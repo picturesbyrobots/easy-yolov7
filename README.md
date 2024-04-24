@@ -8,14 +8,17 @@ Don't forget to read our [Blog](https://blog.theos.ai) and subscribe to our [You
 
 ### Install all the dependencies
 Always install the requirements inside a [virtual environment](https://docs.python.org/3/library/venv.html):
-```
-pip install -r requirements.txt
-```
-#### Fix dependencies
-If you run into issues installing some dependencies, first make sure you installed them inside a virtual environment.
-For cython-bbox, try installing it like this:
+
+### about cython-bbox
+I've modified requirements.txt to not include cython-bbox. this needs to be done seperately. I normally install cython-bbox first
 ```
 pip install -e git+https://github.com/samson-wang/cython_bbox.git#egg=cython-bbox
+```
+
+If that install successfully install the rest of the requirements via pip install
+
+```
+pip install -r requirements.txt
 ```
 
 ### Detect the image
