@@ -4,13 +4,28 @@ import json
 import cv2
 import selectors
 import socket
-
 import json
+
+import argparse
+
+
+# Parse command line arguments
+parser = argparse.ArgumentParser(description='Run the YOLOv7 object detector on a webcam feed and send the detections to clients over TCP')
+parser.add_argument('-resx', type=int, default=1280, help='Width of the webcam feed')
+parser.add_argument('-resy', type=int, default=720, help='height of the webcam feed')
+
+args = parser.parse_args()
+
+
 
 yolov7 = YOLOv7()
 yolov7.load('coco.weights', classes='coco.yaml', device='cpu') # use 'gpu' for CUDA GPU inference
 
-webcam = cv2.VideoCapture(0)
+webcam = cv2.VideoCapture(0, cv2.CAP_DSHOW) # use cv2.CAP_DSHOW to avoid the camera window freezing compile_args
+
+webcam.set(cv2.CAP_PROP_FRAME_WIDTH, args.resx)
+webcam.set(cv2.CAP_PROP_FRAME_HEIGHT, args.resy)
+
 sel = selectors.DefaultSelector()
 sel = selectors.DefaultSelector()
 
